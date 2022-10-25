@@ -1,0 +1,24 @@
+<table mat-table [dataSource]="data">  
+    <ng-container matColumnDef="publishedDate">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.publishedDate | date:'dd.MM.YYYY' }} </td>
+      </ng-container>
+
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+  
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef> URL </th>
+      <td mat-cell *matCellDef="let element">  
+        <a href="{{element.url}}" target="_blank">Link zum Artikel</a>
+      </td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [length]="200" [pageSize]="40" (page)="onPageClick($event)"></mat-paginator>
